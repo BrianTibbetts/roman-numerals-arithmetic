@@ -53,21 +53,29 @@ namespace RomanNumeralMath
          *      -see the base case and recursive case for more information
          */
         public int RNumSum(string rnum, int sum)
-        {
-            // base case: the roman numeral string has 1 character left
-            if (rnum.Length == 1)
+        {   
+            // Find the value of the current roman numeral character
+            int rnumVal = RNumCharToInt(rnum[0]);   
+            // base case: the roman numeral string has 1 or less characters left
+            if (rnum.Length <= 1)
             {
-                return sum + RNumCharToInt(rnum[0]);
+                return sum + rnumVal;
             }
 
             // recursive case: the roman numeral string is longer than 1 character
-            else { 
+            else {
                 /* To decide whether the roman numeral is in subtractive notation,
                  * compare the first and second characters. */
-
+                if (rnumVal < RNumCharToInt(rnum[1]))
+                {
                     // subtractive notation: subtract the character's value from the sum
-
+                    return RNumSum(rnum.Substring(1), sum - rnumVal);
+                }
+                else
+                {
                     // additive notation: add the character's value to the sum
+                    return RNumSum(rnum.Substring(1), sum + rnumVal);
+                }
             }
         }
         static void Main(string[] args)
@@ -75,8 +83,12 @@ namespace RomanNumeralMath
 
             Arithmetic arithmetic = new Arithmetic();
             string rnum = "V";
-            int convertedRNum = arithmetic.RNumCharToInt(rnum[0]);
-            Console.WriteLine(rnum + " in integer form equals " + convertedRNum);
+            int convertedrnum = arithmetic.RNumCharToInt(rnum[0]);
+            Console.WriteLine("The roman numeral character " + rnum + " in integer form equals " + convertedrnum);
+
+            string fullrnum = "CIX";
+            int convertedfullrnum = arithmetic.RNumToInt(fullrnum);
+            Console.WriteLine("The roman numeral " + fullrnum + " in integer form equals " + convertedfullrnum);
         }
     }
 }
