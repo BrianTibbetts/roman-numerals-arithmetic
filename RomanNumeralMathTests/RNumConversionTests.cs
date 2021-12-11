@@ -21,22 +21,22 @@ namespace RomanNumeralMathTests
             
         }
 
-        // are roman numerals which begin with subtractive notation digits being detected?
+        // are roman numerals in additive notation being converted to integers correctly?
         [Fact]
-        public void TestIsSubtNotation()
-        {
-            Arithmetic arithmetic = new Arithmetic();
-            Assert.True(arithmetic.IsSubtNotation('I', 'V'));   // test "IV"
-        }
-
-        // are roman numeral strings being converted to integers correctly?
-        [Fact]
-        public void TestRNumToInt()
+        public void TestRNumToIntAddNotation()
         {
             Arithmetic arithmetic = new Arithmetic();
             Assert.Equal(5, arithmetic.RNumToInt("V"));
             Assert.Equal(55, arithmetic.RNumToInt("LV"));
+        }
+
+        // how about roman numerals in subtractive notation?
+        [Fact]
+        public void TestRNumToIntSubNotation()
+        {
+            Arithmetic arithmetic = new Arithmetic();
             Assert.Equal(4, arithmetic.RNumToInt("IV"));
+            Assert.Equal(109, arithmetic.RNumToInt("CIX"));
         }
     }
 }
