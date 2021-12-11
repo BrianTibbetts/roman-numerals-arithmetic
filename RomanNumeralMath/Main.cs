@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace RomanNumeralMath
 {
@@ -78,17 +79,22 @@ namespace RomanNumeralMath
                 }
             }
         }
+
         static void Main(string[] args)
         {
+            // TODO: Use a roman numeral regex for input validation
 
+            // Accept the user's input
+            Console.WriteLine("Provide two roman numerals to add.");
+            Console.WriteLine("Roman numeral 1: ");
+            string rnum1 = Console.ReadLine();
+            Console.WriteLine("Roman numeral 2: ");
+            string rnum2 = Console.ReadLine();
+
+            // Add the roman numerals and display the result to the user
             Arithmetic arithmetic = new Arithmetic();
-            string rnum = "V";
-            int convertedrnum = arithmetic.RNumCharToInt(rnum[0]);
-            Console.WriteLine("The roman numeral character " + rnum + " in integer form equals " + convertedrnum);
-
-            string fullrnum = "CIX";
-            int convertedfullrnum = arithmetic.RNumToInt(fullrnum);
-            Console.WriteLine("The roman numeral " + fullrnum + " in integer form equals " + convertedfullrnum);
+            int rnumSum = arithmetic.RNumToInt(rnum1) + arithmetic.RNumToInt(rnum2);
+            Console.WriteLine("Roman numeral sum: " + rnumSum);
         }
     }
 }
