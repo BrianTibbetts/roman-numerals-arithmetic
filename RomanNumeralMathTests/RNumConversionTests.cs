@@ -70,6 +70,7 @@ namespace RomanNumeralMathTests
         public void TestIntToRNumAddNotation()
         {
             Arithmetic arithmetic = new Arithmetic();
+            Assert.Equal("LV", arithmetic.IntToRNum(55));
             Assert.Equal("CCLVII", arithmetic.IntToRNum(257));
         }
         // How about integers converting to subtractive notation?
@@ -77,6 +78,7 @@ namespace RomanNumeralMathTests
         public void TestIntToRNumSubNotation()
         {
             Arithmetic arithmetic = new Arithmetic();
+            Assert.Equal("XCII", arithmetic.IntToRNum(92));
             Assert.Equal("MCDXXVI", arithmetic.IntToRNum(1426));
         }
         // Does addition return the correct results?
@@ -85,6 +87,10 @@ namespace RomanNumeralMathTests
         {
             Arithmetic arithmetic = new Arithmetic();
             Assert.Equal("LX", arithmetic.AddRNum("LV", "V"));
+            Assert.Equal("LX", arithmetic.AddRNum("V", "LV"));
+            Assert.Equal("CC", arithmetic.AddRNum("C", "C"));
+            Assert.Equal("MIV", arithmetic.AddRNum("IV", "M"));
+            Assert.Equal("CCXLIII", arithmetic.AddRNum("XCVII", "CXLVI"));
         }
     }
 }

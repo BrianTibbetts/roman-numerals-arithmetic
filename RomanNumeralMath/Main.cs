@@ -201,6 +201,17 @@ namespace RomanNumeralMath
             }
 
         }
+        /* function AddRnum - Adds two roman numerals
+         * arguments
+         *  rnumX and rnumY, two roman numeral strings
+         *  
+         * return values
+         *  a string representing the sum of both roman numerals
+         */
+        public string AddRNum(string rnumX, string rnumY)
+        {
+            return IntToRNum(RNumToInt(rnumX) + RNumToInt(rnumY));
+        }
         static void Main(string[] args)
         {
             // Accept the user's input
@@ -212,8 +223,9 @@ namespace RomanNumeralMath
 
             // Add the roman numerals and display the result to the user
             Arithmetic arithmetic = new Arithmetic();
-            int rnumSum = arithmetic.RNumToInt(rnum1) + arithmetic.RNumToInt(rnum2);
-            Console.WriteLine("Roman numeral sum: " + rnumSum);
+            string rnumSum = arithmetic.AddRNum(rnum1, rnum2);
+            Console.WriteLine("Sum as a Roman Numeral: " + rnumSum);
+            Console.WriteLine("Sum as an Integer: " + arithmetic.RNumToInt(rnumSum));
         }
     }
 }
