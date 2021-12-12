@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace RomanNumeralMath
 {
@@ -34,6 +35,48 @@ namespace RomanNumeralMath
             }
         }
 
+        /* function IntToRNumStr - Converts an integer from the allowed list to a roman numeral string
+         * arguments
+         *  x, an integer which directly corresponds to a roman numeral character or 
+         *   a pair of roman numeral characters in subtractive notation
+         * return values
+         *  a roman numeral string corresponding to the integer's value
+         */
+        public string IntToRNumStr(int x)
+        {
+            switch (x)
+            {
+                case 1:
+                    return "I";
+                case 4:
+                    return "IV";
+                case 5:
+                    return "V";
+                case 9:
+                    return "IX";
+                case 10:
+                    return "X";
+                case 40:
+                    return "XL";
+                case 50:
+                    return "L";
+                case 90:
+                    return "LC";
+                case 100:
+                    return "C";
+                case 400:
+                    return "CD";
+                case 500:
+                    return "D";
+                case 900:
+                    return "CM";
+                case 1000:
+                    return "M";
+                default:
+                    return "";
+            }
+        }
+
         /* function RNumToInt - Converts a roman numeral to an integer
          * arguments
          *  rnum, a roman numeral string 
@@ -45,13 +88,12 @@ namespace RomanNumeralMath
             return (RNumSum(rnum, 0));
         }
 
-        /* function RNumSum - Finds the sum of all roman numeral characters in a roman numeral
+        /* function RNumSum - Finds the sum of all values in a given roman numeral
          * arguments
          *  rnum, a roman numeral string
          *  sum, the current sum of roman numeral character values
          * return values
-         *  the total sum of roman numeral character values
-         *      -see the base case and recursive case for more information
+         *  the total sum of roman numeral character values as an integer
          */
         public int RNumSum(string rnum, int sum)
         {   
@@ -80,10 +122,58 @@ namespace RomanNumeralMath
             }
         }
 
+        /* function IntToRNum - Converts an integer to a roman numeral
+         * arguments
+         *  x, a positive integer
+         * return values
+         *  a string representing the integer as a roman numeral
+         */
+        public string IntToRNum(int x)
+        {
+            /* Create a stack of integers which correspond to relevant roman numerals,
+             * any which either correspond to a single roman numeral character
+             * or a pair of characters in subtractive notation. */
+            Stack<int> rnumValues = new Stack<int>();
+            rnumValues.Push(1);
+            rnumValues.Push(4);
+            rnumValues.Push(5);
+            rnumValues.Push(9);
+            rnumValues.Push(10);
+            rnumValues.Push(40);
+            rnumValues.Push(50);
+            rnumValues.Push(90);
+            rnumValues.Push(100);
+            rnumValues.Push(400);
+            rnumValues.Push(500);
+            rnumValues.Push(900);
+            rnumValues.Push(1000);
+
+            return RNumFill(x, "", rnumValues, 0);
+        }
+
+        /* function RNumFill - Given an integer, builds up a string of roman numeral characters
+         * arguments
+         *  x, a positive integer
+         *  rnum, a string containing the roman numeral
+         *  rnumValues, a Stack object of integers corresponding to roman numerals
+         *  rnumValuesRem, the remainder found when dividing x by the value on top of rnumValues
+         * return values
+         *  a string representing the integer as a roman numeral
+         */
+        public string RNumFill(int x, string rnum, Stack<int> rnumValues, int rnumValuesRem)
+        {
+            // Base case: x has reached 0, meaning there are no more characters to add
+
+            // Recursive case:
+            // Peek the stack
+
+                // If x is divisible by the value peeked,
+                // subtract from x, add symbols to rnum, and pass on the remainder
+
+                // Else, pop the stack
+        }
         static void Main(string[] args)
         {
-            // TODO: Use a roman numeral regex for input validation
-
             // Accept the user's input
             Console.WriteLine("Provide two roman numerals to add.");
             Console.WriteLine("Roman numeral 1: ");
