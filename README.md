@@ -1,5 +1,5 @@
 # roman-numerals-arithmetic
- Uses roman numerals to add
+This is a program which adds roman numerals by converting between integers and roman numeral strings.
  
  
 ## Resources Used
