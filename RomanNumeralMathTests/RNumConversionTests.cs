@@ -21,6 +21,33 @@ namespace RomanNumeralMathTests
 
         }
 
+        // are integers converting to single roman numeral characters correctly?
+        [Fact]
+        public void TestIntToRNumStrSingleNumerals()
+        {
+            Arithmetic arithmetic = new Arithmetic();
+            Assert.Equal("I", arithmetic.IntToRNumStr(1));
+            Assert.Equal("V", arithmetic.IntToRNumStr(5));
+            Assert.Equal("X", arithmetic.IntToRNumStr(10));
+            Assert.Equal("L", arithmetic.IntToRNumStr(50));
+            Assert.Equal("C", arithmetic.IntToRNumStr(100));
+            Assert.Equal("D", arithmetic.IntToRNumStr(500));
+            Assert.Equal("M", arithmetic.IntToRNumStr(1000));
+        }
+
+        // are integers converting to character combinations for subtractive notation correctly?
+        [Fact]
+        public void TestIntToRNumStrMultiNumerals()
+        {
+            Arithmetic arithmetic = new Arithmetic();
+            Assert.Equal("IV", arithmetic.IntToRNumStr(4));
+            Assert.Equal("IX", arithmetic.IntToRNumStr(9));
+            Assert.Equal("XL", arithmetic.IntToRNumStr(40));
+            Assert.Equal("XC", arithmetic.IntToRNumStr(90));
+            Assert.Equal("CD", arithmetic.IntToRNumStr(400));
+            Assert.Equal("CM", arithmetic.IntToRNumStr(900));
+        }
+
         // are roman numerals in additive notation being converted to integers correctly?
         [Fact]
         public void TestRNumToIntAddNotation()
