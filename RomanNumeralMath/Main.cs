@@ -61,7 +61,7 @@ namespace RomanNumeralMath
                 case 50:
                     return "L";
                 case 90:
-                    return "LC";
+                    return "XC";
                 case 100:
                     return "C";
                 case 400:
@@ -162,15 +162,44 @@ namespace RomanNumeralMath
          */
         public string RNumFill(int x, string rnum, Stack<int> rnumValues, int rnumValuesRem)
         {
-            // Base case: x has reached 0, meaning there are no more characters to add
+            // base case: x has reached 0, meaning there are no more characters to add
+            if (x <= 0)
+            {
+                return rnum;
+            }
+            // recursive case: x is greater than 0, append the next characters
+            else
+            {
+                // Peek the stack to check the remainder
+                int nextItem = rnumValues.Peek();
+                int nextRem = x % nextItem;
 
-            // Recursive case:
-            // Peek the stack
+                // If x divided by the value peeked has a remainder to pass on...
+                if (nextRem < x)
+                {
+                    // append roman numerals to rnum representing the peeked value
+                    String rnumAppend = String.Concat(rnum, IntToRNumStr(nextItem));
 
-                // If x is divisible by the value peeked,
-                // subtract from x, add symbols to rnum, and pass on the remainder
+                    return RNumFill(
+                        x - nextItem, // subtract the peeked value from the integer
+                        rnumAppend,
+                        rnumValues,   // continue using the stack as is
+                        nextRem       // pass on the new remainder
+                    );
+                }
+                // Else, pop the stack and peek again
+                else
+                {
+                    rnumValues.Pop();
+                    return RNumFill(
+                        x,
+                        rnum,
+                        rnumValues,
+                        rnumValuesRem
+                    );
+                }
+            }
 
-                // Else, pop the stack
         }
         static void Main(string[] args)
         {
