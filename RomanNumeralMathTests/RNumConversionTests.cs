@@ -18,7 +18,7 @@ namespace RomanNumeralMathTests
             Assert.Equal(100, arithmetic.RNumCharToInt('C'));
             Assert.Equal(500, arithmetic.RNumCharToInt('D'));
             Assert.Equal(1000, arithmetic.RNumCharToInt('M'));
-            
+
         }
 
         // are roman numerals in additive notation being converted to integers correctly?
@@ -37,6 +37,27 @@ namespace RomanNumeralMathTests
             Arithmetic arithmetic = new Arithmetic();
             Assert.Equal(4, arithmetic.RNumToInt("IV"));
             Assert.Equal(109, arithmetic.RNumToInt("CIX"));
+        }
+        // Are integers converting to additive notation roman numerals correctly?
+        [Fact]
+        public void TestIntToRNumAddNotation()
+        {
+            Arithmetic arithmetic = new Arithmetic();
+            Assert.Equal("CCLVII", arithmetic.IntToRNum(257));
+        }
+        // How about integers converting to subtractive notation?
+        [Fact]
+        public void TestIntToRNumSubNotation()
+        {
+            Arithmetic arithmetic = new Arithmetic();
+            Assert.Equal("MCDXXVI", arithmetic.IntToRNum(1426));
+        }
+        // Does addition return the correct results?
+        [Fact]
+        public void TestAddRNum()
+        {
+            Arithmetic arithmetic = new Arithmetic();
+            Assert.Equal("LX", arithmetic.AddRNum("LV", "V"));
         }
     }
 }
